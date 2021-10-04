@@ -14,6 +14,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using TestPro.Domain.Infrastructure;
 using TestPro.Api.Helpers;
+using Services.Interfaces;
+using Services;
 
 namespace TestPro.Api
 {
@@ -36,8 +38,8 @@ namespace TestPro.Api
                 options.UseSqlServer(Configuration.GetConnectionString("Database")));
 
 
-
-
+            services.AddTransient<IAccountService, AccountService>();
+            services.ConfigureMapper();
             services.ConfigureSwagger();
             services.ConfigureAuthentication();
         }

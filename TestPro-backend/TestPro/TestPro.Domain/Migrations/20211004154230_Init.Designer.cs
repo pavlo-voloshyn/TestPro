@@ -10,7 +10,7 @@ using TestPro.Domain.Infrastructure;
 namespace TestPro.Domain.Migrations
 {
     [DbContext(typeof(TestContext))]
-    [Migration("20211004134008_Init")]
+    [Migration("20211004154230_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
