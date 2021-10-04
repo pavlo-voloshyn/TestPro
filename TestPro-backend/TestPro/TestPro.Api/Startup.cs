@@ -39,6 +39,7 @@ namespace TestPro.Api
 
 
             services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<ITestService, TestService>();
             services.ConfigureMapper();
             services.ConfigureSwagger();
             services.ConfigureAuthentication();
@@ -59,6 +60,7 @@ namespace TestPro.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

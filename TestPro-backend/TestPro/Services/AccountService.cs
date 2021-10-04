@@ -32,6 +32,53 @@ namespace Services
                 Password = dto.Password
             };
 
+            var tests = new List<Test>();
+
+            for(int i = 0; i < 10; i++)
+            {
+                var questions = new List<Question>();
+
+                for(int j = 0; j < 5; j++)
+                {
+                    int n = new Random().Next(3);
+                    var ans_a = GetRandomSentence();
+                    var ans_b = GetRandomSentence();
+                    var ans_c = GetRandomSentence();
+                    var ans_d = GetRandomSentence();
+                    
+                    string right = ans_a;
+                    
+                    if (n == 1)
+                        right = ans_b;
+                    else if (n == 2)
+                        right = ans_c;
+                    else if (n == 3)
+                        right = ans_d;
+
+                    questions.Add(new Question()
+                    {
+                        Title = GetRandomSentence(),
+                        Answer_A = ans_a,
+                        Answer_B = ans_b,
+                        Answer_C = ans_c,
+                        Answer_D = ans_d,
+                        RightAnswer = right,
+                        IsPassed = false
+                    });
+                }
+
+
+                tests.Add(new Test()
+                {
+                    Description = GetRandomSentence(),
+                    IsPassed = false,
+                    Questions = questions,
+                    User = user
+                });
+            }
+            
+            user.Tests = tests;
+
             _context.Add(user);
             await _context.SaveChangesAsync();
         }
@@ -64,10 +111,33 @@ namespace Services
             var response = new LoginResDTO()
             {
                 Id = user.Id.ToString(),
-                Token = encodedJwt
+                Token = encodedJwt,
+                Name = user.Name
             };
 
             return response;
+        }
+
+        private string GetRandomSentence()
+        {
+            Random random = new Random();
+            string[] words = { "Aliquam", " erat ", "volutpat.", "Aliquam", " consequat ", "malesuada ", "interdum.", "Phasellus ", "scelerisque ", "arcu ", "purus,", " quis", " ultrices", " lacus", " rutrum", " id.Quisque", " pellentesque", " elit", " sit", " amet" };
+
+            StringBuilder builder = new StringBuilder();
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                builder.Append(words[random.Next(words.Length)]).Append(" ");
+            }
+
+            string sentence = builder.ToString().Trim() + ". ";
+
+            sentence = char.ToUpper(sentence[0]) + sentence.Substring(1);
+
+            builder = new StringBuilder();
+            builder.Append(sentence);
+
+            return builder.ToString();
         }
     }
 }
