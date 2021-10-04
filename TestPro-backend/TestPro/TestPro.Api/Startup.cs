@@ -31,13 +31,15 @@ namespace TestPro.Api
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TestPro.Api", Version = "v1" });
-            });
             
             services.AddDbContext<TestContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Database")));
+
+
+
+
+            services.ConfigureSwagger();
+            services.ConfigureAuthentication();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
