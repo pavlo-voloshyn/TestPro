@@ -1,0 +1,10 @@
+<h3>Description of test</h3><br>
+<span>{{desc}}</span><br><br>
+
+<div>
+    <input type="checkbox"  id="scales" name="scales" [checked]="check" (change)="check = !check"/>
+    <label for="scales">I agree to start</label>
+</div>
+
+<button (click)="onClick()" type="button"  class="btn btn-primary" [disabled]="!check">Proceed</button>
+

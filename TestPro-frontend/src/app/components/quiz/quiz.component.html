@@ -1,0 +1,23 @@
+<h3>{{cur_title}}</h3>
+<!-- [checked]="check"
+(change)="check = !check" -->
+<form (ngSubmit)="onClick()">
+<div class="custom-control custom-radio">
+  <input [checked]="check_a" (change)="check_a = !check_a" id="a" type="radio" class="custom-control-input" value="a" name="t" ngModel>
+  <label class="custom-control-label" for="a">A: {{cur_a}}</label>
+</div>
+
+<div class="custom-control custom-radio">
+  <input [checked]="check_b" (change)="check_b = !check_b" id="b" type="radio" class="custom-control-input" value="b" name="t" ngModel>
+  <label class="custom-control-label" for="b">B: {{cur_b}}</label>
+</div>
+<div class="custom-control custom-radio">
+  <input [checked]="check_c" (change)="check_c = !check_c" id="c" type="radio" class="custom-control-input" value="c" name="t" ngModel>
+  <label class="custom-control-label" for="c">C: {{cur_c}}</label>
+</div>
+<div class="custom-control custom-radio">
+  <input [checked]="check_d" (change)="check_d = !check_d" id="d" type="radio" class="custom-control-input" value="d" name="t" ngModel>
+  <label class="custom-control-label" for="d">D: {{cur_d}}</label>
+</div>
+<button class="btn btn-primary" type="submit" [disabled]="!(check_a || check_b || check_c || check_d)">Submit</button>
+</form>
