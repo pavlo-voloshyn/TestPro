@@ -30,7 +30,11 @@ export class AuthService {
           }));
   }
 
+  logup(name:string, username: string, password: string) {
+    return this.http.post<any>(`${environment.apiUrl}/Account/logup`, { 'name':name, 'username' : username, 'password' : password });
+  }
+
   logout() {
-      localStorage.removeItem('currentUser');
+      localStorage.clear()
   }
 }

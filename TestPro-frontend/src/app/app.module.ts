@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { TestDescComponent } from './components/test-desc/test-desc.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { ResultComponent } from './components/result/result.component';
+import { LogupComponent } from './components/logup/logup.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ResultComponent } from './components/result/result.component';
     LoginComponent,
     TestDescComponent,
     QuizComponent,
-    ResultComponent
+    ResultComponent,
+    LogupComponent
   ],
   imports: [
     BrowserModule,

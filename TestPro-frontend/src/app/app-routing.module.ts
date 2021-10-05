@@ -1,3 +1,4 @@
+import { LogupComponent } from './components/logup/logup.component';
 import { ResultComponent } from './components/result/result.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { TestDescComponent } from './components/test-desc/test-desc.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'quiz',  component: QuizComponent, canActivate: [AuthGuard]},
   { path: 'result',  component: ResultComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
+  { path: 'logup', component: LogupComponent }
 
 ];
 

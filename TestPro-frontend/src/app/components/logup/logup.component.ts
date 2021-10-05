@@ -1,15 +1,15 @@
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-logup',
+  templateUrl: './logup.component.html',
+  styleUrls: ['./logup.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LogupComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
@@ -17,11 +17,11 @@ export class LoginComponent implements OnInit {
 
   constructor(
       private formBuilder: FormBuilder,
-      private route: ActivatedRoute,
       private router: Router,
       private authenticationService: AuthService
   ) {
     this.loginForm = this.formBuilder.group({
+      name: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required]});
       // if (this.authenticationService.currentUserValue) {
@@ -42,17 +42,17 @@ export class LoginComponent implements OnInit {
       }
 
       this.loading = true;
-      this.authenticationService.login(this.f.username.value, this.f.password.value)
-          .pipe(first())
-          .subscribe({
-              next: () => {
-                  const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-                  this.router.navigate([returnUrl]);
-              },
-              error: error => {
-                  this.error = error;
-                  this.loading = false;
-              }
-          });
+      this.authenticationService.logup(this.f.name.value, this.f.username.value, this.f.password.value).pipe(first())
+      .subscribe({
+          next: () => {
+              this.router.navigate(['login']);
+          },
+          error: error => {
+              this.error = error;
+              this.loading = false;
+          }
+      });
+
+
   }
 }
